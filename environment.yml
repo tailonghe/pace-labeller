@@ -1,0 +1,20 @@
+# Clean environment for pace_labeller.py
+#   conda env create -f environment.yml
+#   conda activate pace_labeller
+#
+# Deliberately minimal: no s3fs / aiobotocore / aiohttp (the source of the
+# Windows SSL certificate-store crash), no xarray, zarr, dask, scipy, cartopy
+# or hapi. The script imports numpy, netCDF4, matplotlib and tkinter, nothing
+# else.
+name: pace_labeller
+
+channels:
+  - conda-forge
+
+dependencies:
+  - python=3.12
+  - numpy>=1.24
+  - netcdf4>=1.6
+  # matplotlib-base skips the Qt stack; the Tk backend comes from tk below
+  - matplotlib-base>=3.7
+  - tk
